@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper and this repository."
+title: "Numerical experiments for: Toward a higher-dimensional Poincare-Hopf theory for Filippov vector fields"
+authors:
+  - family-names: "Madhyannapu"
+    given-names: "Sri Venkata Durga Sudarsan"
+    affiliation: "Dr. RVR & NRI Institute of Technology, Andhra Pradesh, India"
+    email: "sudarsan.m@rvrjcce.ac.in"
+year: 2026
+license: MIT
+repository-code: "https://github.com/msvdsudarsan/higher-dim-poincare-hopf-filippov"
+keywords:
+  - Filippov systems
+  - Poincare-Hopf theorem
+  - local index
+  - Sotomayor-Teixeira regularization
+  - degree theory
