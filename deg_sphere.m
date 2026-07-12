@@ -1,12 +1,4 @@
 function d = deg_sphere(gfun, Nu, Nv)
-%DEG_SPHERE  Numerical Brouwer degree of a map g: S^2 -> R^3\{0}.
-%   Implements the normalized degree integral used in the paper,
-%       d = (1/vol(S^2)) * int_{S^2} (ghat)^* vol_{S^2},   vol(S^2) = 4*pi,
-%   where ghat = g/||g|| (cf. eq. (W) and eq. (J)).  The orientation is
-%   fixed so that the identity map S^2 -> S^2 has degree +1.
-%
-%   gfun must accept a 3xK array of points on S^2 and return a 3xK array
-%   of (nonzero) vectors in R^3.  No toolboxes are required.
     if nargin < 2, Nu = 400; end
     if nargin < 3, Nv = 200; end
     uu = linspace(0, 2*pi, Nu+1); uu = uu(1:end-1);
@@ -17,7 +9,6 @@ function d = deg_sphere(gfun, Nu, Nv)
     G  = local_ghat(gfun, U,     V);
     Gu = (local_ghat(gfun, U+h,  V) - G) / h;
     Gv = (local_ghat(gfun, U,   V+h) - G) / h;
-    % jac = G . (Gv x Gu)   (order chosen so identity -> +1)
     cx = Gv(:,:,2).*Gu(:,:,3) - Gv(:,:,3).*Gu(:,:,2);
     cy = Gv(:,:,3).*Gu(:,:,1) - Gv(:,:,1).*Gu(:,:,3);
     cz = Gv(:,:,1).*Gu(:,:,2) - Gv(:,:,2).*Gu(:,:,1);
@@ -28,8 +19,8 @@ end
 function Gn = local_ghat(gfun, U, V)
     [m, n] = size(U);
     X = sin(V).*cos(U);  Y = sin(V).*sin(U);  Zc = cos(V);
-    pts = [X(:).'; Y(:).'; Zc(:).'];   % 3 x (m*n)
-    W = gfun(pts);                     % 3 x (m*n)
+    pts = [X(:).'; Y(:).'; Zc(:).'];
+    W = gfun(pts);
     W = W ./ vecnorm(W);
     Gn = zeros(m, n, 3);
     Gn(:,:,1) = reshape(W(1,:), m, n);

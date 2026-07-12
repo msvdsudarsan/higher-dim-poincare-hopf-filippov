@@ -1,11 +1,4 @@
 function s5_delta_independence()
-%S5  delta-dependence of the candidate index and its delta -> 0 limit
-%   (evidence for the conjecture that the candidate index is well defined via
-%   the delta -> 0 limit; paper Conjectures 'limit'/'deltaindep').  Evidence only.
-%
-%   At finite delta the assembled degree is NOT exactly an integer: it carries
-%   an O(delta) bias. What the paper conjectures is that the delta -> 0 LIMIT is
-%   the correct integer. The linear fit below estimates that limit.
     fprintf('\n=== S5: candidate index vs delta and its delta->0 limit ===\n');
     fprintf('  [evidence only; NOT a proof]\n');
     Ap = eye(3); Am = [1 0 0;0 0 -1;0 1 0];
@@ -16,7 +9,7 @@ function s5_delta_independence()
         vals(i) = deg_sphere(G, 320, 320);
         fprintf('  delta = %.2f   candidate index = %+.4f\n', deltas(i), vals(i));
     end
-    p = polyfit(deltas, vals, 1);   % candidate ~ p(2) + p(1)*delta
+    p = polyfit(deltas, vals, 1);
     fprintf('  linear fit: candidate ~ %+.3f  %+.3f*delta\n', p(2), p(1));
     fprintf('  ==> delta->0 estimate = %+.3f   (compare with integer degree +1)\n', p(2));
 

@@ -1,10 +1,4 @@
 function s6_proximity_condition()
-%S6  The proximity condition eq. (proximity):
-%       ||a-b|| + delta*(||a'|| + ||b'||) < mu ,   mu = min_t ||h(t)|| ,
-%   is a SUFFICIENT condition guaranteeing that the straight-line homotopy
-%   H(s,t) = (1-s) h(t) + s Z_eps(t) never vanishes, so hat h and hat Z_eps are
-%   fiberwise homotopic in S^{n-1} (Prop. condhom).  We sweep the size of the
-%   normal derivatives a', b' and record min||H||.
     fprintf('\n=== S6: proximity condition eq.(proximity) as sufficient nonvanishing ===\n');
     a = [1;0.2;0]; b = [0.2;1;0]; delta = 0.2; epsr = 0.05;
     ts = linspace(-delta, delta, 400);
