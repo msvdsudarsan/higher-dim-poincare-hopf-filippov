@@ -1,7 +1,4 @@
 function exportfig(f, name)
-%EXPORTFIG  Save figure f as <name>.pdf and .png to the first writable folder.
-%   Never throws: if no folder is writable, it just prints a note and returns,
-%   so the calling script always finishes.
     thisdir = fileparts(mfilename('fullpath'));
     cands = { fullfile(thisdir, '..', 'figures'), ...
               fullfile(pwd, 'figures'), ...
@@ -12,7 +9,6 @@ function exportfig(f, name)
         d = cands{i};
         try
             if ~exist(d, 'dir'); mkdir(d); end
-            % probe writability
             probe = fullfile(d, '.probe_write');
             fid = fopen(probe, 'w');
             if fid ~= -1
@@ -20,7 +16,6 @@ function exportfig(f, name)
                 outdir = d; break;
             end
         catch
-            % try next candidate
         end
     end
     if isempty(outdir); outdir = pwd; end
